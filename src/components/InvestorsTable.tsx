@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Investor {
   firm_id: string;
@@ -10,6 +11,7 @@ interface Investor {
 
 const InvestorsTable: React.FC = () => {
   const [investors, setInvestors] = useState<Investor[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:8000/api/investors")
@@ -17,6 +19,10 @@ const InvestorsTable: React.FC = () => {
       .then((data) => setInvestors(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  const handleRowClick = (firmID: string) => {
+    navigate(`/investors/${firmID}`);
+  };
 
   return (
     <table id="investors-table">
@@ -31,7 +37,10 @@ const InvestorsTable: React.FC = () => {
       </thead>
       <tbody>
         {investors.map((investor) => (
-          <tr key={investor.firm_id}>
+          <tr
+            key={investor.firm_id}
+            onClick={() => handleRowClick(investor.firm_id)}
+          >
             <td>{investor.firm_id}</td>
             <td>{investor.firm_name}</td>
             <td>{investor.firm_type}</td>
