@@ -25,31 +25,34 @@ const InvestorsTable: React.FC = () => {
   };
 
   return (
-    <table id="investors-table">
-      <thead>
-        <tr>
-          <th>FirmID</th>
-          <th>FirmName</th>
-          <th>Type</th>
-          <th>DateAdded</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        {investors.map((investor) => (
-          <tr
-            key={investor.firm_id}
-            onClick={() => handleRowClick(investor.firm_id)}
-          >
-            <td>{investor.firm_id}</td>
-            <td>{investor.firm_name}</td>
-            <td>{investor.firm_type}</td>
-            <td>{new Date(investor.date_added).toLocaleDateString()}</td>
-            <td>{investor.address}</td>
+    <div>
+      <h1 className="heading">Investors</h1>
+      <table id="investors-table">
+        <thead>
+          <tr>
+            <th>FirmID</th>
+            <th>FirmName</th>
+            <th>Type</th>
+            <th>DateAdded</th>
+            <th>Address</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {investors.map((investor) => (
+            <tr
+              key={investor.firm_id}
+              onClick={() => handleRowClick(investor.firm_id)}
+            >
+              <td>{investor.firm_id}</td>
+              <td>{investor.firm_name}</td>
+              <td>{investor.firm_type}</td>
+              <td>{new Date(investor.date_added).toLocaleDateString()}</td>
+              <td>{investor.address}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

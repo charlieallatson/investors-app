@@ -38,19 +38,23 @@ const InvestorDetail: React.FC = () => {
 
   return (
     <div>
-      <h2>Investor {id}</h2>
-      <label htmlFor="asset-class">Asset Class:</label>
-      <select
-        id="asset-class"
-        value={selectedAssetClass}
-        onChange={handleChange}
-      >
-        {assetClasses.map((assetClass) => (
-          <option key={assetClass.value} value={assetClass.value}>
-            {assetClass.label}
-          </option>
-        ))}
-      </select>
+      <h1 className="heading">Investor {id}</h1>
+      <div className="dropdown-container">
+        <label htmlFor="assetClass" style={{ display: "none" }}>
+          Asset Class:
+        </label>
+        <select
+          id="assetClass"
+          value={selectedAssetClass}
+          onChange={handleChange}
+        >
+          {assetClasses.map((ac) => (
+            <option key={ac.value} value={ac.value}>
+              {ac.label}
+            </option>
+          ))}
+        </select>
+      </div>
       <table>
         <thead>
           <tr>
